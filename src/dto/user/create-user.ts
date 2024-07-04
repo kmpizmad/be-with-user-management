@@ -1,31 +1,35 @@
-import { User } from '@prisma/client';
 import { prisma } from '../../clients';
-import { hashAuthKey } from '../../lib/utils/dto';
+import { UserRegisterSchema } from '../../lib/schemas/user';
 
-type CreateUser = Pick<User, 'provider' | 'authKey' | 'appId'> & { active?: boolean; role: string };
+type Payload = UserRegisterSchema & { logMessage: string; logType: string };
 
-export async function create(payload: CreateUser) {
-  const { appId, role, provider, authKey, ...rest } = payload;
-  let pass = authKey;
-
-  if (provider === 'local' && !!authKey) {
-    pass = await hashAuthKey(authKey);
-  }
+export async function create(payload: Payload) {
+  const { role, logMessage, logType, ...rest } = payload;
 
   return await prisma.user.create({
     data: {
       ...rest,
-      provider,
-      authKey: pass,
       roles: {
         connectOrCreate: {
           create: { role },
           where: { role },
         },
       },
-      app: {
-        connect: { id: appId },
+      history: {
+        create: {
+          message: logMessage,
+          type: {
+            connectOrCreate: {
+              create: { type: logType },
+              where: { type: logType },
+            },
+          },
+        },
       },
+    },
+    include: {
+      roles: true,
+      history: true,
     },
   });
 }

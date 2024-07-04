@@ -9,9 +9,17 @@ const env = z.object({
     .default('8080')
     .transform(value => parseInt(value) || 8080),
   DATABASE_URL: z.string().optional().default('postgresql://postgres:root@localhost:5432/auth_system'),
-  JWT_SECRET: z.string().optional().default('mysecret'),
+  CORS_ORIGINS: z
+    .string()
+    .optional()
+    .default('*')
+    .transform(origins => origins.split(',')),
+  ACCESS_TOKEN_SECRET: z.string().optional().default('mysecret'),
+  ACCESS_TOKEN_TTL: z.string().optional().default('5m'),
+  REFRESH_TOKEN_SECRET: z.string().optional().default('mysecret'),
+  REFRESH_TOKEN_TTL: z.string().optional().default('7d'),
 });
 
-const config = env.parse(process.env);
+const envConfig = env.parse(process.env);
 
-export default config;
+export default envConfig;

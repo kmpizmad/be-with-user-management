@@ -1,15 +1,17 @@
-import config from '../config';
-import { AuthServer } from '../lib/server';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import { apiRouter } from '../routes';
-import { createObjectFromArray, omit } from '../lib/utils/object-fns';
+import { CustomServer } from '../lib/server';
+import { mapObject, omit } from '../lib/utils/object-fns';
 import { logger } from '../clients';
 import { Handler } from '../lib/interfaces/server';
+import config from '../config';
 
-export const server = new AuthServer();
+export const server = new CustomServer();
 
-server.stack(cors());
+server.stack(cors({ origin: config.CORS_ORIGINS, credentials: true }));
+server.stack(cookieParser() as Handler);
 server.stack(bodyParser.urlencoded({ extended: true }));
 server.stack(bodyParser.json());
 
@@ -24,7 +26,9 @@ server.setGlobalNotFoundHandler((req, _, next) => {
 
 server.setGlobalErrorHandler((err, _, res, __) => {
   const status = err.status || 500;
-  const stack = createObjectFromArray(err.stack?.split('\n') || []);
+  const stack = mapObject(err.stack?.split('\n') || [], (item, i) => {
+    return { [`#${i + 1}`]: typeof item === 'string' ? item.trim() : item };
+  });
   const errResponse = config.NODE_ENV !== 'production' ? { ...err, stack } : omit(err, 'stack');
   logger.error(errResponse.message, errResponse);
   res.status(status).json(errResponse);

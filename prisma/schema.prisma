@@ -10,70 +10,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Customer {
-  id          String       @id @default(uuid()) @db.Uuid
-  email       String       @unique
-  password    String       @db.VarChar(32)
-  firstName   String       @map("first_name") @db.VarChar(64)
-  lastName    String       @map("last_name") @db.VarChar(64)
-  paymentInfo PaymentInfo?
-  cards       Card[]
-  apps        App[]
-  lastLogin   DateTime     @default(now()) @map("last_login")
-  createdAt   DateTime     @default(now()) @map("created_at")
-  updatedAt   DateTime     @default(now()) @updatedAt @map("updated_at")
-
-  @@map("customers")
-}
-
-model PaymentInfo {
-  id         String   @id @default(uuid()) @db.Uuid
-  customer   Customer @relation(fields: [customerId], references: [id])
-  customerId String   @unique @map("customer_id") @db.Uuid
-  card       Card     @relation(fields: [cardId], references: [id], onUpdate: Cascade, onDelete: Restrict)
-  cardId     String   @map("card_id") @db.Uuid
-  amount     Int
-  dueDate    DateTime @map("due_date")
-  active     Boolean  @default(true)
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")
-
-  @@map("payment_informations")
-}
-
-model Card {
-  id              String        @id @default(uuid()) @db.Uuid
-  customers       Customer[]
-  paymentInfos    PaymentInfo[]
-  cardNumber      String        @map("card_number") @db.VarChar(20)
-  expirationYear  Int           @map("expiration_year")
-  expirationMonth Int           @map("expiration_month")
-  cvc             String        @db.VarChar(4)
-  createdAt       DateTime      @default(now()) @map("created_at")
-  updatedAt       DateTime      @default(now()) @updatedAt @map("updated_at")
-
-  @@map("cards")
-}
-
-model App {
-  id         Int      @id @default(autoincrement())
-  secret     String   @unique @default(cuid())
-  users      User[]
-  roles      String[]
-  customer   Customer @relation(fields: [customerId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  customerId String   @map("customer_id") @db.Uuid
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @default(now()) @updatedAt @map("updated_at")
-
-  @@map("apps")
-}
-
 model User {
   id        String        @id @default(uuid()) @db.Uuid
-  app       App           @relation(fields: [appId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-  appId     Int           @map("app_id")
-  provider  String
-  authKey   String?       @map("auth_key")
+  email     String        @unique
+  password  String
+  firstName String        @map("first_name") @db.VarChar(64)
+  lastName  String        @map("last_name") @db.VarChar(64)
   roles     Role[]        @relation(name: "user_roles")
   history   UserHistory[]
   lastLogin DateTime      @default(now()) @map("last_login")

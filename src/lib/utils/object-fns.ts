@@ -1,16 +1,7 @@
 import { Prettify } from '../interfaces';
 
-export function createObjectFromArray(arr: unknown[]): Record<string, unknown> {
-  const obj: Record<string, unknown> = {};
-  for (let i = 0; i < arr.length; i++) {
-    const current = arr[i];
-    obj[`#${i + 1}`] = typeof current === 'string' ? current.trim() : current;
-  }
-  return obj;
-}
-
-export function objectMapper(arr: string[], setter: (key: string) => Record<string, unknown>) {
-  const map = arr.map(item => setter(item));
+export function mapObject(arr: string[], setter: (item: string, index: number) => Record<string, unknown>) {
+  const map = arr.map((item, index) => setter(item, index));
   const obj = map.reduce((prev, curr) => ({ ...prev, ...curr }), {});
 
   return obj;

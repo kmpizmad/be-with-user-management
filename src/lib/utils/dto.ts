@@ -1,17 +1,15 @@
 import { genSalt, hash } from 'bcrypt';
-import { objectMapper } from './object-fns';
+import { mapObject } from './object-fns';
 
 export function includeMapper(arr: string[] = []) {
   if (arr.length === 0) return null;
 
-  return objectMapper(arr, key => ({ [key]: true }));
+  return mapObject(arr, key => ({ [key]: true }));
 }
 
-export async function hashAuthKey(authKey: string | null = '') {
-  if (!authKey) return null;
-
+export async function hashPassword(password: string) {
   const salt = await genSalt();
-  const pass = await hash(authKey, salt);
+  const pass = await hash(password, salt);
 
   return pass;
 }

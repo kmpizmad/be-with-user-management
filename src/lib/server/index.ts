@@ -1,7 +1,7 @@
 import express, { Express, Router } from 'express';
 import { ErrorHandler, Handler } from '../interfaces/server';
 
-export class AuthServer {
+export class CustomServer {
   private __instance: Express;
   private __middlewares: Handler[] = [];
   private __routers: [string, (Router | Handler)[]][] = [];
