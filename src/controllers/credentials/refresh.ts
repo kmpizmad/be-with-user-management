@@ -6,7 +6,7 @@ import { handleInvalidToken } from '../../lib/error-handlers/token';
 
 type Token = jwt.JwtPayload;
 
-const refreshToken = createController<Dictionary, Dictionary, { accessToken: string }>((req, res) => {
+const refresh = createController<Dictionary, Dictionary, { accessToken: string }>((req, res) => {
   const decodedToken = jwt.verify(req.cookies.refreshToken, config.REFRESH_TOKEN_SECRET) as Token;
   const accessToken = jwt.sign({}, config.ACCESS_TOKEN_SECRET, {
     subject: decodedToken.sub,
@@ -21,4 +21,4 @@ const refreshToken = createController<Dictionary, Dictionary, { accessToken: str
   res.status(201).json({ status: 201, message: 'Refreshed access token', data: { accessToken } });
 }, handleInvalidToken);
 
-export default refreshToken;
+export default refresh;

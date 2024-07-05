@@ -1,4 +1,5 @@
-import refreshToken from './refreshToken';
-import createToken from './createToken';
+import login from './login';
+import register from './register';
+import refresh from './refresh';
 
-export default { createToken, refreshToken };
+export default { login, register, refresh };
