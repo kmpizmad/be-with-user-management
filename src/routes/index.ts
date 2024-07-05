@@ -8,6 +8,6 @@ import protectedRoute from '../lib/middlewares/protectedRoute';
 export const apiRouter = createRouter(router => {
   router.post('/credentials/register', validateSchema(userRegisterSchema, 'body'), credentials.register);
   router.post('/credentials/login', validateSchema(userLoginSchema, 'body'), credentials.login);
-  router.post('/credentials/refresh', credentials.refresh);
+  router.post('/credentials/refresh', protectedRoute, credentials.refresh);
   router.use('/v1', protectedRoute, v1Router);
 });

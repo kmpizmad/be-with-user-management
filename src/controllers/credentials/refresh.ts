@@ -1,21 +1,17 @@
-import * as jwt from 'jsonwebtoken';
-import { Dictionary } from '../../lib/interfaces';
 import createController from '../../lib/server/createController';
-import config from '../../config';
+import tokenService from '../../services/token.service';
 import { handleInvalidToken } from '../../lib/error-handlers/token';
+import config from '../../config';
 
-type Token = jwt.JwtPayload;
+const refresh = createController<{ accessToken: string }, { accessToken: string }>((req, res) => {
+  const decodedToken = tokenService.verify({
+    userId: req.activeUser?.id,
+    token: req.cookies.refreshToken,
+    secret: config.REFRESH_TOKEN_SECRET,
+  });
 
-const refresh = createController<Dictionary, Dictionary, { accessToken: string }>((req, res) => {
-  const decodedToken = jwt.verify(req.cookies.refreshToken, config.REFRESH_TOKEN_SECRET) as Token;
-  const accessToken = jwt.sign({}, config.ACCESS_TOKEN_SECRET, {
-    subject: decodedToken.sub,
-    expiresIn: config.ACCESS_TOKEN_TTL,
-  });
-  const refreshToken = jwt.sign({}, config.REFRESH_TOKEN_SECRET, {
-    subject: decodedToken.sub,
-    expiresIn: config.REFRESH_TOKEN_TTL,
-  });
+  const accessToken = tokenService.createToken('access', {}, { subject: decodedToken.sub });
+  const refreshToken = tokenService.createToken('refresh', {}, { subject: decodedToken.sub });
 
   res.cookie('refreshToken', refreshToken, config.COOKIE_OPTIONS);
   res.status(201).json({ status: 201, message: 'Refreshed access token', data: { accessToken } });
