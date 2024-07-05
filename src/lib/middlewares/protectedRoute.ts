@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import createController from '../server/createController';
+import userService from '../../services/user.service';
 import { handleInvalidToken } from '../error-handlers/token';
-import userRepository from '../../dto/user.repository';
 import config from '../../config';
 
 type Token = jwt.JwtPayload;
@@ -25,7 +25,7 @@ const protectedRoute = createController(async (req, _, next) => {
     return;
   }
 
-  const user = await userRepository.findById(decodedToken.sub);
+  const user = await userService.findById(decodedToken.sub);
   req.activeUser = user;
   next();
 }, handleInvalidToken);
