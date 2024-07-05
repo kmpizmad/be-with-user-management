@@ -6,7 +6,9 @@ import { UserWithRole } from '../../lib/interfaces/dto';
 import config from '../../config';
 
 const login = createController<{ user: UserWithRole; accessToken: string }, UserLoginSchema>(async (req, res) => {
-  const user = await userService.login(req.body);
+  let user = await userService.login(req.body);
+  user = await userService.updateLastLogin(user.id);
+
   const accessToken = jwt.sign({}, config.ACCESS_TOKEN_SECRET, { subject: user.id, expiresIn: '5m' });
   const refreshToken = jwt.sign({}, config.REFRESH_TOKEN_SECRET, { subject: user.id, expiresIn: '7d' });
 

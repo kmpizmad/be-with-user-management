@@ -5,7 +5,7 @@ CREATE TABLE "users" (
     "password" TEXT NOT NULL,
     "first_name" VARCHAR(64) NOT NULL,
     "last_name" VARCHAR(64) NOT NULL,
-    "last_login" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "last_login" TIMESTAMP(3),
     "active" BOOLEAN NOT NULL DEFAULT true,
     "deleted_at" TIMESTAMP(3),
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -51,6 +51,9 @@ CREATE TABLE "_user_roles" (
     "A" INTEGER NOT NULL,
     "B" UUID NOT NULL
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "roles_role_key" ON "roles"("role");
