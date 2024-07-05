@@ -13,7 +13,13 @@ const validateSchema = (schema: ZodSchema, containingObject: 'query' | 'body'): 
     } catch (error) {
       if (isZodError(error)) {
         const zodError = fromZodError(error, { includePath: false, prefix: null });
-        next({ name: zodError.name, status: 400, message: zodError.message, stack: zodError.stack });
+        next({
+          name: 'VALIDATION_ERROR',
+          status: 400,
+          message: 'Missing or invalid fields',
+          errors: zodError.message.split(';').map(err => err.trim()),
+          stack: zodError.stack,
+        });
       } else {
         next();
       }

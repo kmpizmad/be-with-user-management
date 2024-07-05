@@ -30,6 +30,6 @@ server.setGlobalErrorHandler((err, _, res, __) => {
     return { [`#${i + 1}`]: typeof item === 'string' ? item.trim() : item };
   });
   const errResponse = config.NODE_ENV !== 'production' ? { ...err, stack } : omit(err, 'stack');
-  logger.error(errResponse.message, errResponse);
+  logger.error({ ...errResponse });
   res.status(status).json(errResponse);
 });

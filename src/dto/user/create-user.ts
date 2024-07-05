@@ -5,16 +5,16 @@ import { UserRegisterSchema } from '../../lib/schemas/user';
 type Payload = UserRegisterSchema & UserHistory;
 
 export async function create(payload: Payload) {
-  const { role, logMessage, logType, ...rest } = payload;
+  const { roles, logMessage, logType, ...rest } = payload;
 
   return await prisma.user.create({
     data: {
       ...rest,
       roles: {
-        connectOrCreate: {
-          create: { role },
+        connectOrCreate: roles.map(role => ({
           where: { role },
-        },
+          create: { role },
+        })),
       },
       history: {
         create: {
