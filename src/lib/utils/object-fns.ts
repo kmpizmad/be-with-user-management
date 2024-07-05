@@ -1,6 +1,6 @@
 import { Prettify } from '../interfaces';
 
-export function mapObject(arr: string[], setter: (item: string, index: number) => Record<string, unknown>) {
+export function mapObject<T>(arr: T[], setter: (item: T, index: number) => Record<string, unknown>) {
   const map = arr.map((item, index) => setter(item, index));
   const obj = map.reduce((prev, curr) => ({ ...prev, ...curr }), {});
 

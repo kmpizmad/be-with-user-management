@@ -1,17 +1,27 @@
 import userRepository from '../../dto/user.repository';
+import { getRoleNames } from '../../lib/utils/dto';
+import { FindManyUserArgs, UserWithRole } from '../../lib/interfaces/dto';
 
-export async function findAll(args?: Parameters<typeof userRepository.findAll>[0]) {
+export async function findAll(args?: FindManyUserArgs): Promise<UserWithRole[]> {
   const users = await userRepository.findAll(args);
+
+  return users.map(user => ({ ...user, roles: getRoleNames(user.roles) }));
 }
 
-export async function findById(id: string) {
+export async function findById(id: string): Promise<UserWithRole> {
   const user = await userRepository.findById(id);
+
+  return { ...user, roles: getRoleNames(user.roles) };
 }
 
-export async function findByEmail(email: string) {
+export async function findByEmail(email: string): Promise<UserWithRole> {
   const user = await userRepository.findByEmail(email);
+
+  return { ...user, roles: getRoleNames(user.roles) };
 }
 
-export async function findByRole(role: string, args?: Parameters<typeof userRepository.findByRole>[1]) {
+export async function findByRole(role: string, args?: FindManyUserArgs): Promise<UserWithRole[]> {
   const users = await userRepository.findByRole(role, args);
+
+  return users.map(user => ({ ...user, roles: getRoleNames(user.roles) }));
 }

@@ -19,7 +19,7 @@ function tryHandler<
       const firstTruthy: [boolean, ErrorObject] | undefined = cases.find(([condition]) => condition);
       const message: ErrorObject = firstTruthy
         ? firstTruthy[1]
-        : { name: 'INTERNAL', status: 500, message: 'Unknown error occurred', stack: error.stack };
+        : { name: 'INTERNAL_ERROR', status: 500, message: 'Unknown error occurred', stack: error.stack };
       next(message);
     }
   };

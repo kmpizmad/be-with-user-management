@@ -1,7 +1,8 @@
 import { prisma } from '../../clients';
+import { UserHistory } from '../../lib/interfaces/dto';
 import { UserRegisterSchema } from '../../lib/schemas/user';
 
-type Payload = UserRegisterSchema & { logMessage: string; logType: string };
+type Payload = UserRegisterSchema & UserHistory;
 
 export async function create(payload: Payload) {
   const { role, logMessage, logType, ...rest } = payload;
@@ -27,9 +28,6 @@ export async function create(payload: Payload) {
         },
       },
     },
-    include: {
-      roles: true,
-      history: true,
-    },
+    include: { roles: true },
   });
 }

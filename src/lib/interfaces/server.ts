@@ -66,7 +66,7 @@ export type ResponseBody<T extends Dictionary | null = null> = {
 };
 
 export type ErrorObject = {
-  name: string;
+  name: 'UNAUTHORIZED' | 'FORBIDDEN' | 'INTERNAL_ERROR' | (string & {});
   status: number;
   message: string;
   stack?: string;

@@ -1,13 +1,11 @@
 import { genSalt, hash } from 'bcrypt';
-import { mapObject } from './object-fns';
+import { Role } from '@prisma/client';
 
-export function includeMapper(arr: string[] = []) {
-  if (arr.length === 0) return null;
-
-  return mapObject(arr, key => ({ [key]: true }));
+export function getRoleNames(roles: Role[]): string[] {
+  return roles.reduce((prev, curr) => [...prev, curr.role], [] as string[]);
 }
 
-export async function hashPassword(password: string) {
+export async function hashPassword(password: string): Promise<string> {
   const salt = await genSalt();
   const pass = await hash(password, salt);
 
