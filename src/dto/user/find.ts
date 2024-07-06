@@ -31,3 +31,7 @@ export async function findByRole(role: string, args?: FindManyUserArgs) {
     include: { roles: true },
   });
 }
+
+export async function count() {
+  return await prisma.user.count();
+}

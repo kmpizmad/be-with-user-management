@@ -1,7 +1,7 @@
-import createController from '../../lib/server/createController';
-import tokenService from '../../services/token.service';
-import { handleInvalidToken } from '../../lib/error-handlers/token';
-import config from '../../config';
+import createController from '../../../lib/server/createController';
+import tokenService from '../../../services/token.service';
+import { handleInvalidToken } from '../../../lib/error-handlers/token';
+import config from '../../../config';
 
 const refresh = createController<{ accessToken: string }, { accessToken: string }>((req, res) => {
   const decodedToken = tokenService.verify({

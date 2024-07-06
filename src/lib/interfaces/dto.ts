@@ -16,7 +16,7 @@ export type FindManyUserHistoryArgs = Prettify<
   DtoFindMany & { orderBy?: DtoOrderBy<typeof prisma.userHistory.findMany> }
 >;
 
-type DtoFindMany = { skip: number; take: number };
+type DtoFindMany = { skip?: number; take?: number };
 type DtoOrderBy<T extends (...args: any[]) => any> = Required<DtoArgs<T>>['orderBy'];
 
 type DtoArgs<T extends (...args: any) => any> = DropUndefined<Parameters<T>[0]>;

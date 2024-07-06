@@ -25,3 +25,9 @@ export async function findByRole(role: string, args?: FindManyUserArgs): Promise
 
   return users.map(user => ({ ...user, roles: getRoleNames(user.roles) }));
 }
+
+export async function count(): Promise<number> {
+  const numberOfUsers = await userRepository.count();
+
+  return numberOfUsers;
+}

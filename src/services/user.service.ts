@@ -1,7 +1,7 @@
-import { login, register } from './user/user-auth';
-import { findAll, findByEmail, findById, findByRole } from './user/find-user';
-import { activateUser, deactivateUser, updateUser } from './user/update-user';
-import { deleteUser, softDeleteUser } from './user/delete-user';
+import { login, register } from './user/auth';
+import { count, findAll, findByEmail, findById, findByRole } from './user/find';
+import { activateUser, deactivateUser, updateUserInfo, updateUserRole } from './user/update';
+import { deleteUser, softDeleteUser } from './user/delete';
 
 const userService = {
   login,
@@ -10,11 +10,13 @@ const userService = {
   findById,
   findByEmail,
   findByRole,
-  updateUser,
+  updateUserInfo,
+  updateUserRole,
   activateUser,
   deactivateUser,
   softDeleteUser,
   deleteUser,
+  count,
 };
 
 export default userService;

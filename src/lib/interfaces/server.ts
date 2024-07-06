@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { Dictionary, Pagination, ParsedQs } from '.';
-import { DtoPagination } from './dto';
+import { DtoPagination, UserWithRole } from './dto';
 import { User } from '@prisma/client';
 
 export type Handler<
@@ -39,7 +39,7 @@ export type RequestObject<
 > = Request<P, ResponseBody<ResBody>, ReqBody, ReqQuery, LocalsObj> & {
   pagination?: { query: DtoPagination; createPagination: (totalCount: number) => Pagination };
   validated?: { query?: ReqQuery; body?: ReqBody };
-  activeUser?: User & { roles: string[] };
+  activeUser?: UserWithRole;
 };
 
 /**

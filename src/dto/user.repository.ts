@@ -1,7 +1,7 @@
-import { findAll, findByEmail, findById, findByRole } from './user/find-user';
-import { create } from './user/create-user';
-import { updateById } from './user/update-user';
-import { deleteById } from './user/delete-user';
+import { count, findAll, findByEmail, findById, findByRole } from './user/find';
+import { create } from './user/create';
+import { updateById } from './user/update';
+import { deleteById } from './user/delete';
 
 const userRepository = {
   findAll,
@@ -11,6 +11,7 @@ const userRepository = {
   create,
   updateById,
   deleteById,
+  count,
 };
 
 export default userRepository;

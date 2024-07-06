@@ -1,6 +1,6 @@
 import createRouter from '../lib/server/createRouter';
 import v1Router from './v1';
-import credentials from '../controllers/credentials';
+import credentials from '../controllers/v1/credentials';
 import { validateSchema } from '../lib/middlewares';
 import { userLoginSchema, userRegisterSchema } from '../lib/schemas/user';
 import protectedRoute from '../lib/middlewares/protectedRoute';
