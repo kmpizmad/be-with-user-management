@@ -4,11 +4,17 @@ import { UserLoginSchema, UserRegisterSchema } from '../../lib/schemas/user';
 import { getRoleNames, hashPassword } from '../../lib/utils/dto';
 
 export async function login(payload: UserLoginSchema) {
-  const user = await userRepository.findByEmail(payload.email);
+  let user = await userRepository.findByEmail(payload.email);
 
   if (!(await compare(payload.password, user.password))) {
     throw new Error('Invalid login credentials');
   }
+
+  user = await userRepository.updateById(user.id, {
+    lastLogin: new Date(),
+    logType: 'login',
+    logMessage: 'User logged in',
+  });
 
   return { ...user, roles: getRoleNames(user.roles) };
 }
@@ -19,7 +25,7 @@ export async function register(payload: UserRegisterSchema) {
   const user = await userRepository.create({
     ...payload,
     password,
-    logMessage: 'Successfully created user',
+    logMessage: 'User account created',
     logType: 'create',
   });
 

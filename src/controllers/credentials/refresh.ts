@@ -10,8 +10,8 @@ const refresh = createController<{ accessToken: string }, { accessToken: string 
     secret: config.REFRESH_TOKEN_SECRET,
   });
 
-  const accessToken = tokenService.createToken('access', {}, { subject: decodedToken.sub });
-  const refreshToken = tokenService.createToken('refresh', {}, { subject: decodedToken.sub });
+  const accessToken = tokenService.createToken('access', { subject: decodedToken.sub });
+  const refreshToken = tokenService.createToken('refresh', { subject: decodedToken.sub });
 
   res.cookie('refreshToken', refreshToken, config.COOKIE_OPTIONS);
   res.status(201).json({ status: 201, message: 'Refreshed access token', data: { accessToken } });

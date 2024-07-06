@@ -1,6 +1,6 @@
 import { login, register } from './user/user-auth';
 import { findAll, findByEmail, findById, findByRole } from './user/find-user';
-import { activateUser, deactivateUser, updateLastLogin, updateUser } from './user/update-user';
+import { activateUser, deactivateUser, updateUser } from './user/update-user';
 import { deleteUser, softDeleteUser } from './user/delete-user';
 
 const userService = {
@@ -11,7 +11,6 @@ const userService = {
   findByEmail,
   findByRole,
   updateUser,
-  updateLastLogin,
   activateUser,
   deactivateUser,
   softDeleteUser,

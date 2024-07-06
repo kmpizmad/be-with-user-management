@@ -14,16 +14,6 @@ export async function updateUser(id: string, payload: Payload) {
   return { ...user, roles: getRoleNames(user.roles) };
 }
 
-export async function updateLastLogin(id: string) {
-  const user = await userRepository.updateById(id, {
-    lastLogin: new Date(),
-    logType: 'login',
-    logMessage: 'User logged in',
-  });
-
-  return { ...user, roles: getRoleNames(user.roles) };
-}
-
 export async function activateUser(id: string) {
   const user = await userRepository.updateById(id, {
     active: true,

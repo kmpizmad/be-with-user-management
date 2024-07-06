@@ -6,11 +6,10 @@ import config from '../../config';
 import tokenService from '../../services/token.service';
 
 const login = createController<{ user: UserWithRole; accessToken: string }, UserLoginSchema>(async (req, res) => {
-  let user = await userService.login(req.body);
-  user = await userService.updateLastLogin(user.id);
+  const user = await userService.login(req.body);
 
-  const accessToken = tokenService.createToken('access', {}, { subject: user.id });
-  const refreshToken = tokenService.createToken('refresh', {}, { subject: user.id });
+  const accessToken = tokenService.createToken('access', { subject: user.id });
+  const refreshToken = tokenService.createToken('refresh', { subject: user.id });
 
   res.cookie('refreshToken', refreshToken, config.COOKIE_OPTIONS);
   res.status(200).json({ status: 200, message: 'Successful login', data: { user, accessToken } });
