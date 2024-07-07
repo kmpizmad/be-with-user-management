@@ -1,9 +1,9 @@
-import createController from '../../../lib/server/createController';
-import userService from '../../../services/user.service';
-import { UserLoginSchema } from '../../../lib/schemas/user';
-import { UserWithRole } from '../../../lib/interfaces/dto';
-import config from '../../../config';
-import tokenService from '../../../services/token.service';
+import { createController } from '@lib/server';
+import { UserWithRole } from '@lib/interfaces';
+import { UserLoginSchema } from '@lib/schemas/user';
+import userService from '@services/user.service';
+import tokenService from '@services/token.service';
+import config from '@config';
 
 const login = createController<{ user: UserWithRole; accessToken: string }, UserLoginSchema>(async (req, res) => {
   const user = await userService.login(req.body);

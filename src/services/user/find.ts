@@ -1,6 +1,6 @@
-import userRepository from '../../dto/user.repository';
-import { getRoleNames } from '../../lib/utils/dto';
-import { FindManyUserArgs, UserWithRole } from '../../lib/interfaces/dto';
+import { getRoleNames } from '@lib/utils/dto';
+import { FindManyUserArgs, UserWithRole } from '@lib/interfaces';
+import userRepository from '@dto/user.repository';
 
 export async function findAll(args?: FindManyUserArgs): Promise<UserWithRole[]> {
   const users = await userRepository.findAll(args);

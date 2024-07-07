@@ -1,8 +1,7 @@
-import { Dictionary, PaginatedResponse } from '../../../lib/interfaces';
-import { UserWithRole } from '../../../lib/interfaces/dto';
-import { PaginationQuerySchema } from '../../../lib/schemas/pagination';
-import createController from '../../../lib/server/createController';
-import userService from '../../../services/user.service';
+import { createController } from '@lib/server';
+import { Dictionary, PaginatedResponse, UserWithRole } from '@lib/interfaces';
+import { PaginationQuerySchema } from '@lib/schemas/pagination';
+import userService from '@services/user.service';
 
 const getAll = createController<
   PaginatedResponse<{ users: UserWithRole[] }> | { users: UserWithRole[] },

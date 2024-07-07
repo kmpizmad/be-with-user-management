@@ -1,7 +1,7 @@
-import userService from '../../../services/user.service';
-import createController from '../../../lib/server/createController';
-import { UserWithRole } from '../../../lib/interfaces/dto';
-import { UserInfoSchema } from '../../../lib/schemas/user';
+import { createController } from '@lib/server';
+import { UserWithRole } from '@lib/interfaces';
+import { UserInfoSchema } from '@lib/schemas/user';
+import userService from '@services/user.service';
 
 const updateInfo = createController<{ user: UserWithRole }, UserInfoSchema, { id: string }>(async (req, res) => {
   let user: UserWithRole;

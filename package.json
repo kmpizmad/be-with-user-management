@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec ts-node src/main.ts",
+    "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/main.ts",
     "migrate": "npx prisma migrate dev --name",
     "migrate:draft": "npx prisma migrate dev --create-only --name",
     "migrate:push": "npx prisma migrate dev",
@@ -26,7 +26,8 @@
     "eslint": "^8.56.0",
     "nodemon": "^3.0.3",
     "prisma": "^5.9.1",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0"
   },
   "dependencies": {
     "@prisma/client": "^5.9.1",

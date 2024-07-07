@@ -1,9 +1,8 @@
-import createRouter from '../lib/server/createRouter';
-import v1Router from './v1';
-import credentials from '../controllers/v1/credentials';
-import { validateSchema } from '../lib/middlewares';
-import { userLoginSchema, userRegisterSchema } from '../lib/schemas/user';
-import protectedRoute from '../lib/middlewares/protectedRoute';
+import { createRouter } from '@lib/server';
+import { protectedRoute, validateSchema } from '@lib/middlewares';
+import { userLoginSchema, userRegisterSchema } from '@lib/schemas/user';
+import v1Router from '@v1/routes';
+import { credentials } from '@v1/controllers';
 
 export const apiRouter = createRouter(router => {
   router.post('/credentials/register', validateSchema(userRegisterSchema, 'body'), credentials.register);

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { parseIntWithFallback } from '../utils/parsers';
+import { parseIntWithFallback } from '@lib/utils/parsers';
 
 export const paginationQuerySchema = z.object({
   page: z

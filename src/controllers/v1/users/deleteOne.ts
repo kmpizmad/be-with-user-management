@@ -1,7 +1,7 @@
 import { User } from '@prisma/client';
-import { UserDeleteSchema } from '../../../lib/schemas/user';
-import createController from '../../../lib/server/createController';
-import userService from '../../../services/user.service';
+import { createController } from '@lib/server';
+import { UserDeleteSchema } from '@lib/schemas/user';
+import userService from '@services/user.service';
 
 const deleteOne = createController<{ user: User }, UserDeleteSchema, { id: string }>(async (req, res) => {
   const userId = req.params.id;

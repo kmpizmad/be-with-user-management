@@ -1,5 +1,4 @@
-import { Dictionary, ParsedQs } from '../interfaces';
-import { ErrorObject, Handler, RequestObject } from '../interfaces/server';
+import { Dictionary, ErrorObject, Handler, ParsedQs, RequestObject } from '@lib/interfaces';
 
 function tryHandler<
   ResBody extends Dictionary | null = Dictionary,

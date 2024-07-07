@@ -1,5 +1,5 @@
-import historyRepository from '../../dto/history.repository';
-import { FindManyUserArgs } from '../../lib/interfaces/dto';
+import { FindManyUserArgs } from '@lib/interfaces';
+import historyRepository from '@dto/history.repository';
 
 export async function findByUserId(id: string, args?: FindManyUserArgs) {
   const history = await historyRepository.findByUserId(id, args);

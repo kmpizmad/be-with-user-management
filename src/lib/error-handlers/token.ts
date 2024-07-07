@@ -1,4 +1,4 @@
-import { ErrorObject } from '../interfaces/server';
+import { ErrorObject } from '@lib/interfaces';
 
 export function handleInvalidToken(err: Error): [boolean, ErrorObject] {
   return [

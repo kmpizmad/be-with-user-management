@@ -1,5 +1,25 @@
 {
   "compilerOptions": {
+    /* Aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@clients": ["./src/clients.ts"],
+      "@config": ["./src/config/index.ts"],
+      "@config/*": ["./src/config/*"],
+      "@dto/*": ["./src/dto/*"],
+      "@lib/interfaces": ["./src/lib/interfaces/index.ts"],
+      "@lib/middlewares": ["./src/lib/middlewares/index.ts"],
+      "@lib/schemas/*": ["./src/lib/schemas/*"],
+      "@lib/server": ["./src/lib/server/index.ts"],
+      "@lib/utils/*": ["./src/lib/utils/*"],
+      "@routes": ["./src/routes/index.ts"],
+      "@services/*": ["./src/services/*"],
+      "@www": ["./src/www/index.ts"],
+      "@v1/controllers": ["./src/controllers/v1/index.ts"],
+      "@v1/controllers/*": ["./src/controllers/v1/*"],
+      "@v1/routes": ["./src/routes/v1/index.ts"]
+    },
+
     /* Base Options: */
     "esModuleInterop": true,
     "skipLibCheck": true,

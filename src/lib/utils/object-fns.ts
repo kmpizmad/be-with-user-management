@@ -1,4 +1,4 @@
-import { Prettify } from '../interfaces';
+import { Prettify } from '@lib/interfaces';
 
 export function mapObject<T>(arr: T[], setter: (item: T, index: number) => Record<string, unknown>) {
   const map = arr.map((item, index) => setter(item, index));

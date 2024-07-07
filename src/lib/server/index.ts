@@ -1,5 +1,8 @@
 import express, { Express, Router } from 'express';
-import { ErrorHandler, Handler } from '../interfaces/server';
+import { ErrorHandler, Handler } from '@lib/interfaces';
+
+export { default as createController } from './createController';
+export { default as createRouter } from './createRouter';
 
 export class CustomServer {
   private __instance: Express;

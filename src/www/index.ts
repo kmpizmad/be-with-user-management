@@ -1,12 +1,12 @@
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import { apiRouter } from '../routes';
-import { CustomServer } from '../lib/server';
-import { mapObject, omit } from '../lib/utils/object-fns';
-import { logger } from '../clients';
-import { Handler } from '../lib/interfaces/server';
-import config from '../config';
+import { apiRouter } from '@routes';
+import { CustomServer } from '@lib/server';
+import { mapObject, omit } from '@lib/utils/object-fns';
+import { logger } from '@clients';
+import { Handler } from '@lib/interfaces';
+import config from '@config';
 
 export const server = new CustomServer();
 

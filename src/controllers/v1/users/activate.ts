@@ -1,7 +1,6 @@
-import createController from '../../../lib/server/createController';
-import userService from '../../../services/user.service';
-import { Dictionary } from '../../../lib/interfaces';
-import { UserWithRole } from '../../../lib/interfaces/dto';
+import { createController } from '@lib/server';
+import { Dictionary, UserWithRole } from '@lib/interfaces';
+import userService from '@services/user.service';
 
 const activate = createController<{ user: UserWithRole }, Dictionary, { id: string }>(async (req, res) => {
   const user = await userService.activateUser(req.params.id);

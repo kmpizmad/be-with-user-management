@@ -1,6 +1,5 @@
 import express, { IRouterMatcher, Router } from 'express';
-import { Prettify } from '../interfaces';
-import { Handler } from '../interfaces/server';
+import { Handler, Prettify } from '@lib/interfaces';
 
 function createRouter(factory: (router: CustomRouter) => void) {
   const router = express.Router();

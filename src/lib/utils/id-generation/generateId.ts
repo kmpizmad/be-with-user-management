@@ -1,4 +1,4 @@
-import { Prettify } from '../../interfaces';
+import { Prettify } from '@lib/interfaces';
 import getCharset from './getCharset';
 
 export default function generateId(options?: Options): string {

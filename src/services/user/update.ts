@@ -1,6 +1,6 @@
 import { User } from '@prisma/client';
-import userRepository from '../../dto/user.repository';
-import { getRoleNames } from '../../lib/utils/dto';
+import userRepository from '@dto/user.repository';
+import { getRoleNames } from '@lib/utils/dto';
 
 type InfoPayload = Pick<Partial<User>, 'firstName' | 'lastName' | 'password'>;
 type RolePayload = { roles?: string[]; removeRoles?: string[] };

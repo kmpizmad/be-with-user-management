@@ -1,4 +1,4 @@
-import createController from '../server/createController';
+import { createController } from '@lib/server';
 
 const allowRoles = (roles: string[]) => {
   return createController(async (req, _, next) => {

@@ -1,4 +1,4 @@
-import userRepository from '../../dto/user.repository';
+import userRepository from '@dto/user.repository';
 
 export async function softDeleteUser(id: string) {
   return await userRepository.deleteById(id, 'soft');

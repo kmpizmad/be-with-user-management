@@ -1,4 +1,4 @@
-import { prisma } from '../../clients';
+import { prisma } from '@clients';
 
 export async function deleteById(id: string, type: 'soft' | 'hard') {
   if (type === 'soft') {

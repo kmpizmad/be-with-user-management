@@ -1,8 +1,7 @@
-import createRouter from '../../lib/server/createRouter';
-import users from '../../controllers/v1/users';
-import protectedRoute from '../../lib/middlewares/protectedRoute';
-import { paginate, validateSchema } from '../../lib/middlewares';
-import { userDeleteSchema, userInfoSchema, userRoleSchema } from '../../lib/schemas/user';
+import { createRouter } from '@lib/server';
+import { paginate, protectedRoute, validateSchema } from '@lib/middlewares';
+import { userDeleteSchema, userInfoSchema, userRoleSchema } from '@lib/schemas/user';
+import { users } from '@v1/controllers';
 
 const userRouter = createRouter(router => {
   router.get('/users', paginate, users.getAll);

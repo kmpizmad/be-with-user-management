@@ -1,9 +1,8 @@
-import config from '../../config';
-import { omit } from '../utils/object-fns';
+import { omit } from '@lib/utils/object-fns';
+import { Dictionary, Handler } from '@lib/interfaces';
+import { PaginationQuerySchema, paginationQuerySchema } from '@lib/schemas/pagination';
+import config from '@config';
 import validateSchema from './validateSchema';
-import { PaginationQuerySchema, paginationQuerySchema } from '../schemas/pagination';
-import { Dictionary } from '../interfaces';
-import { Handler } from '../interfaces/server';
 
 const paginate: Handler<Dictionary, null, Dictionary, PaginationQuerySchema> = async (req, _, next) => {
   const page = req.validated?.query?.page;

@@ -19,7 +19,8 @@ export function isSpecialCharacter(str: string): boolean {
 export function countLetterByPredicate(str: string, predicate: (str: string) => boolean): number {
   let count: number = 0;
   for (let i: number = 0; i < str.length; i++) {
-    if (predicate(str[i])) count += 1;
+    const letter = str[i];
+    if (!!letter && predicate(letter)) count += 1;
   }
   return count;
 }

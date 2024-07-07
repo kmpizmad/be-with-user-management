@@ -1,5 +1,4 @@
-import { Dictionary, ParsedQs } from '../interfaces';
-import { Handler } from '../interfaces/server';
+import { Dictionary, Handler, ParsedQs } from '@lib/interfaces';
 import tryHandler, { CatchHandler } from './tryHandler';
 
 function createController<
