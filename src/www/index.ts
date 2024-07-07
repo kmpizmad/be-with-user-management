@@ -1,11 +1,15 @@
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import { apiRouter } from '@routes';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+
+import { Handler } from '@lib/interfaces';
 import { CustomServer } from '@lib/server';
 import { mapObject, omit } from '@lib/utils/object-fns';
+
 import { logger } from '@clients';
-import { Handler } from '@lib/interfaces';
+
+import { apiRouter } from '@routes';
+
 import config from '@config';
 
 export const server = new CustomServer();

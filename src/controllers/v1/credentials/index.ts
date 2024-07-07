@@ -1,6 +1,6 @@
 import login from './login';
-import register from './register';
 import refresh from './refresh';
+import register from './register';
 
 const credentials = {
   login,

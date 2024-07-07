@@ -1,6 +1,7 @@
-import { createRouter } from '@lib/server';
 import { paginate, protectedRoute, validateSchema } from '@lib/middlewares';
 import { userDeleteSchema, userInfoSchema, userRoleSchema } from '@lib/schemas/user';
+import { createRouter } from '@lib/server';
+
 import { users } from '@v1/controllers';
 
 const userRouter = createRouter(router => {

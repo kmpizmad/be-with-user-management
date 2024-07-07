@@ -1,6 +1,7 @@
 import { fromZodError } from 'zod-validation-error';
-import { ZodSchema, isZodError } from '@lib/utils/validation';
+
 import { Handler, ParsedQs } from '@lib/interfaces';
+import { ZodSchema, isZodError } from '@lib/utils/validation';
 
 const validateSchema = (schema: ZodSchema, containingObject: 'query' | 'body'): Handler => {
   return (req, _, next) => {

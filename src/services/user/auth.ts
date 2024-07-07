@@ -1,6 +1,8 @@
 import { compare } from 'bcrypt';
-import { getRoleNames, hashPassword } from '@lib/utils/dto';
+
 import { UserLoginSchema, UserRegisterSchema } from '@lib/schemas/user';
+import { getRoleNames, hashPassword } from '@lib/utils/dto';
+
 import userRepository from '@dto/user.repository';
 
 export async function login(payload: UserLoginSchema) {

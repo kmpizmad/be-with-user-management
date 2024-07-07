@@ -1,5 +1,6 @@
-import { prisma } from '@clients';
 import { FindManyUserArgs } from '@lib/interfaces';
+
+import { prisma } from '@clients';
 
 export async function findAll(args?: FindManyUserArgs) {
   return await prisma.user.findMany({

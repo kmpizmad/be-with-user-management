@@ -1,7 +1,11 @@
 import * as jwt from 'jsonwebtoken';
+
 import { createController } from '@lib/server';
+
 import userService from '@services/user.service';
+
 import config from '@config';
+
 import { handleInvalidToken } from 'src/lib/error-handlers/token';
 
 type Token = jwt.JwtPayload;

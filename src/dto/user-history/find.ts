@@ -1,5 +1,6 @@
-import { prisma } from '@clients';
 import { FindManyUserHistoryArgs } from '@lib/interfaces';
+
+import { prisma } from '@clients';
 
 export async function findByUserId(id: string, args?: FindManyUserHistoryArgs) {
   return await prisma.userHistory.findMany({

@@ -1,4 +1,5 @@
 import express, { Express, Router } from 'express';
+
 import { ErrorHandler, Handler } from '@lib/interfaces';
 
 export { default as createController } from './createController';

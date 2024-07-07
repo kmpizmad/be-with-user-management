@@ -1,8 +1,10 @@
-import { createController } from '@lib/server';
 import { UserWithRole } from '@lib/interfaces';
 import { UserLoginSchema } from '@lib/schemas/user';
-import userService from '@services/user.service';
+import { createController } from '@lib/server';
+
 import tokenService from '@services/token.service';
+import userService from '@services/user.service';
+
 import config from '@config';
 
 const login = createController<{ user: UserWithRole; accessToken: string }, UserLoginSchema>(async (req, res) => {

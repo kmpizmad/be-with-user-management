@@ -1,5 +1,5 @@
-import { genSalt, hash } from 'bcrypt';
 import { Role } from '@prisma/client';
+import { genSalt, hash } from 'bcrypt';
 
 export function getRoleNames(roles: Role[]): string[] {
   return roles.reduce((prev, curr) => [...prev, curr.role], [] as string[]);

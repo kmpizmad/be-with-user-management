@@ -1,6 +1,7 @@
-import { createController } from '@lib/server';
 import { Dictionary, PaginatedResponse, UserWithRole } from '@lib/interfaces';
 import { PaginationQuerySchema } from '@lib/schemas/pagination';
+import { createController } from '@lib/server';
+
 import userService from '@services/user.service';
 
 const getAll = createController<

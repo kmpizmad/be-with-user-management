@@ -1,7 +1,7 @@
-import { count, findAll, findByEmail, findById, findByRole } from './user/find';
 import { create } from './user/create';
-import { updateById } from './user/update';
 import { deleteById } from './user/delete';
+import { count, findAll, findByEmail, findById, findByRole } from './user/find';
+import { updateById } from './user/update';
 
 const userRepository = {
   findAll,

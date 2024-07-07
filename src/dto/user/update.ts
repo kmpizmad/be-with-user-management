@@ -1,6 +1,8 @@
 import { User } from '@prisma/client';
-import { prisma } from '@clients';
+
 import { UserHistory } from '@lib/interfaces';
+
+import { prisma } from '@clients';
 
 type UpdateUser = Omit<Partial<User>, 'id' | 'email' | 'createdAt' | 'updatedAt'> &
   UserHistory & { roles?: string[]; removeRoles?: string[] };

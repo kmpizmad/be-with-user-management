@@ -1,6 +1,7 @@
-import { createController } from '@lib/server';
 import { UserWithRole } from '@lib/interfaces';
 import { UserRegisterSchema } from '@lib/schemas/user';
+import { createController } from '@lib/server';
+
 import userService from '@services/user.service';
 
 const register = createController<{ user: UserWithRole }, UserRegisterSchema>(async (req, res) => {

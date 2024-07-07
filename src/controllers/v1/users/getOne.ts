@@ -1,5 +1,6 @@
-import { createController } from '@lib/server';
 import { Dictionary, UserWithRole } from '@lib/interfaces';
+import { createController } from '@lib/server';
+
 import userService from '@services/user.service';
 
 const getOne = createController<{ user: UserWithRole }, Dictionary, { id: string }>(async (req, res) => {

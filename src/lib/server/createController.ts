@@ -1,4 +1,5 @@
 import { Dictionary, Handler, ParsedQs } from '@lib/interfaces';
+
 import tryHandler, { CatchHandler } from './tryHandler';
 
 function createController<

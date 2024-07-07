@@ -1,6 +1,9 @@
 import { createController } from '@lib/server';
+
 import tokenService from '@services/token.service';
+
 import config from '@config';
+
 import { handleInvalidToken } from 'src/lib/error-handlers/token';
 
 const refresh = createController<{ accessToken: string }, { accessToken: string }>((req, res) => {

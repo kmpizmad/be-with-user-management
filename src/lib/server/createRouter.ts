@@ -1,4 +1,5 @@
 import express, { IRouterMatcher, Router } from 'express';
+
 import { Handler, Prettify } from '@lib/interfaces';
 
 function createRouter(factory: (router: CustomRouter) => void) {

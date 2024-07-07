@@ -1,4 +1,5 @@
 import { FindManyUserArgs } from '@lib/interfaces';
+
 import historyRepository from '@dto/history.repository';
 
 export async function findByUserId(id: string, args?: FindManyUserArgs) {

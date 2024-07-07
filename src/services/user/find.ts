@@ -1,5 +1,6 @@
-import { getRoleNames } from '@lib/utils/dto';
 import { FindManyUserArgs, UserWithRole } from '@lib/interfaces';
+import { getRoleNames } from '@lib/utils/dto';
+
 import userRepository from '@dto/user.repository';
 
 export async function findAll(args?: FindManyUserArgs): Promise<UserWithRole[]> {

@@ -1,6 +1,7 @@
-import { prisma } from '@clients';
 import { UserHistory } from '@lib/interfaces';
 import { UserRegisterSchema } from '@lib/schemas/user';
+
+import { prisma } from '@clients';
 
 type Payload = UserRegisterSchema & UserHistory;
 

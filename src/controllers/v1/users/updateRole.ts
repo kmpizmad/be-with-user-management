@@ -1,6 +1,7 @@
-import { createController } from '@lib/server';
 import { UserWithRole } from '@lib/interfaces';
 import { UserRoleSchema } from '@lib/schemas/user';
+import { createController } from '@lib/server';
+
 import userService from '@services/user.service';
 
 const updateRole = createController<{ user: UserWithRole }, UserRoleSchema, { id: string }>(async (req, res) => {
